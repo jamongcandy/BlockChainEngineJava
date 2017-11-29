@@ -5,6 +5,7 @@ public class Block {
 	private List<Transaction> transactions;
 
 	public Block(int number, String prevHash, List<Transaction> txs) {
+
 		String transactionsHash;
 		if (txs == null) {
 			transactionsHash = "";

@@ -1,11 +1,18 @@
+import java.util.Date;
 
 public class Transaction {
+	private Date time;
 	private String data;
 	private String hash;
 
 	public Transaction(String data) {
 		this.data = data;
-		hash = Sha256.SHA256(data);
+		time = new Date();
+		hash = Sha256.SHA256(time.toString().concat("&").concat(data));
+	}
+
+	public Date getTime() {
+		return time;
 	}
 
 	public String getData() {
@@ -21,6 +28,7 @@ public class Transaction {
 
 	public void showTransaction() {
 		System.out.println("tx");
+		System.out.println("  time: " + time);
 		System.out.println("  data: " + data);
 		System.out.println("  hash: " + hash);
 	}
