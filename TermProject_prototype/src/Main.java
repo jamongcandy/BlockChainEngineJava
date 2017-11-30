@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Main {
 
 	public static void menu(Map<String, Node> nodeMap) {
+		System.out.println();
 		System.out.println("M E N U");
 		System.out.println("1. create new node");
 		System.out.println("2. select node");
