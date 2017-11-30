@@ -18,7 +18,7 @@ public class BlockChain {
 
 	public void downloadBlockChain(BlockChain src) {
 		txsNotYetAdded.clear();
-		for (int i = 0; i < src.getTxsNotYetAddedSize(); i++) {
+		for (int i = 0; i < src.getTxsNotYetAdded().size(); i++) {
 			txsNotYetAdded.add(new Transaction(src.getTxsNotYetAdded().get(i)));
 		}
 
