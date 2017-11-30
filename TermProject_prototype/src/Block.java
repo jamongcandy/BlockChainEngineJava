@@ -30,8 +30,10 @@ public class Block {
 
 	public Block(Block src) {
 		transactions = new ArrayList<Transaction>();
-		for (int i = 0; i < src.getTransactions().size(); i++) {
-			transactions.add(new Transaction(src.getTransactions().get(i)));
+		if (src.getTransactions() != null) {
+			for (int i = 0; i < src.getTransactions().size(); i++) {
+				transactions.add(new Transaction(src.getTransactions().get(i)));
+			}
 		}
 		header = new BlockHeader(src.getHeader());
 	}
