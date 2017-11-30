@@ -25,6 +25,7 @@ public class Main {
 			nodeMap.put(nodeName, new Node(nodeName, null));
 		} else if (nodeMap.containsKey(downloadfrom)) {
 			nodeMap.put(nodeName, new Node(nodeName, nodeMap.get(downloadfrom)));
+			nodeMap.get(nodeName).addPeer(nodeMap.get(downloadfrom));
 		}
 	}
 
