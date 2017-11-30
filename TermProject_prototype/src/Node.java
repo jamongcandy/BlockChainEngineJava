@@ -53,7 +53,7 @@ public class Node {
 		blockChain.addBlock(newBlock);
 
 		for (int i = 0; i < peers.size(); i++) {
-			peers.get(i).receiveBlock(this, BlockChain.cloneBlock(newBlock));
+			peers.get(i).receiveBlock(this, new Block(newBlock));
 		}
 	}
 

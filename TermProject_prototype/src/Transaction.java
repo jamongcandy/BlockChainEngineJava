@@ -11,6 +11,12 @@ public class Transaction {
 		hash = Sha256.SHA256(time.toString().concat("&").concat(data));
 	}
 
+	public Transaction(Transaction src) {
+		time = (Date) src.getTime().clone();
+		data = new String(src.getData());
+		hash = new String(src.getHash());
+	}
+
 	public Date getTime() {
 		return time;
 	}

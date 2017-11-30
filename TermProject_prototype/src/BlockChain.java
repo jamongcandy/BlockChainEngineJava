@@ -18,10 +18,14 @@ public class BlockChain {
 
 	public void downloadBlockChain(BlockChain src) {
 		txsNotYetAdded.clear();
-		txsNotYetAdded.addAll(src.getTxsNotYetAdded());
+		for (int i = 0; i < src.getTxsNotYetAddedSize(); i++) {
+			txsNotYetAdded.add(new Transaction(src.getTxsNotYetAdded().get(i)));
+		}
 
 		chain.clear();
-		chain.addAll(src.getChain());
+		for (int i = 0; i < src.getChain().size(); i++) {
+			chain.add(new Block(src.getChain().get(i)));
+		}
 
 		genesis = chain.get(0);
 
@@ -56,12 +60,6 @@ public class BlockChain {
 		t.addAll(txsNotYetAdded);
 
 		return new Block(lastBlock.getNumber() + 1, lastBlock.getHash(), t);
-	}
-
-	public static Block cloneBlock(Block b) {
-		List<Transaction> t = new ArrayList<Transaction>();
-		t.addAll(b.getTransactions());
-		return new Block(b.getNumber(), new String(b.getPrevHash()), t);
 	}
 
 	public void addBlock(Block newBlock) {
