@@ -76,7 +76,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		
 		Map<String, Node> nodeMap = new HashMap<String, Node>();
 
 		Scanner scanner = new Scanner(System.in);
@@ -116,6 +116,8 @@ public class Main {
 		}
 
 		scanner.close();
+		
+		
 
 		// // create Node1
 		// Node n1 = new Node("node1", null);

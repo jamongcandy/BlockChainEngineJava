@@ -17,6 +17,14 @@ public class BlockHeader {
 				.concat(this.prevHash).concat("&").concat(this.transactionsHash));
 	}
 
+	public BlockHeader(BlockHeader src) {
+		number = src.getNumber();
+		time = (Date) src.getTime().clone();
+		prevHash = new String(src.getPrevHash());
+		transactionsHash = new String(src.getTransactionsHash());
+		hash = new String(src.getHash());
+	}
+
 	public int getNumber() {
 		return number;
 	}

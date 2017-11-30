@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Block {
@@ -25,6 +26,14 @@ public class Block {
 
 		this.header = header;
 		this.transactions = txs;
+	}
+
+	public Block(Block src) {
+		transactions = new ArrayList<Transaction>();
+		for (int i = 0; i < src.getTransactions().size(); i++) {
+			transactions.add(new Transaction(src.getTransactions().get(i)));
+		}
+		header = new BlockHeader(src.getHeader());
 	}
 
 	public BlockHeader getHeader() {
