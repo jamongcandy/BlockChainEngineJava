@@ -5,15 +5,20 @@ public class Block {
 	private List<Transaction> transactions;
 
 	public Block(int number, String prevHash, List<Transaction> txs) {
+
 		String transactionsHash;
 		if (txs == null) {
 			transactionsHash = "";
 		} else {
-			transactionsHash = txs.get(0).getHash();
-			for (int i = 1; i < txs.size(); i++) {
-				transactionsHash = transactionsHash.concat("&").concat(txs.get(i).getHash());
+			if (txs.size() > 0) {
+				transactionsHash = txs.get(0).getHash();
+				for (int i = 1; i < txs.size(); i++) {
+					transactionsHash = transactionsHash.concat("&").concat(txs.get(i).getHash());
+				}
+				transactionsHash = Sha256.SHA256(transactionsHash);
+			} else {
+				transactionsHash = Sha256.SHA256("");
 			}
-			transactionsHash = Sha256.SHA256(transactionsHash);
 		}
 
 		BlockHeader header = new BlockHeader(number, prevHash, transactionsHash);
@@ -62,5 +67,5 @@ public class Block {
 		System.out.println("}");
 
 	}
-	
+
 }
