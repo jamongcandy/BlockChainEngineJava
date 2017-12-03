@@ -96,7 +96,7 @@ public class Main {
 
 			// select node
 			else if (menuInput.equals("2")) {
-				System.out.println("type in Node's name(type \"no\" to cancle): ");
+				System.out.println("type in Node's name(type \"no\" to cancel): ");
 				String nodeName = scanner.nextLine();
 				while (!nodeMap.containsKey(nodeName) && !nodeName.equals("no")) {
 					System.out.println("invalid node name");
