@@ -3,13 +3,13 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class BlockChain {
-	private List<Transaction> txsNotYetAdded;
+	private List<Transaction> txPool;
 	private List<Block> chain;
 	private Block genesis;
 	private Block lastBlock;
 
 	public BlockChain() {
-		txsNotYetAdded = new ArrayList<Transaction>();
+		txPool = new ArrayList<Transaction>();
 		genesis = new Block(0, "", null);
 		chain = new LinkedList<Block>();
 		chain.add(genesis);
@@ -17,9 +17,9 @@ public class BlockChain {
 	}
 
 	public void downloadBlockChain(BlockChain src) {
-		txsNotYetAdded.clear();
-		for (int i = 0; i < src.getTxsNotYetAdded().size(); i++) {
-			txsNotYetAdded.add(new Transaction(src.getTxsNotYetAdded().get(i)));
+		txPool.clear();
+		for (int i = 0; i < src.getTxPool().size(); i++) {
+			txPool.add(new Transaction(src.getTxPool().get(i)));
 		}
 
 		chain.clear();
@@ -34,20 +34,20 @@ public class BlockChain {
 
 	public Transaction createTransaction(String data) {
 		Transaction t = new Transaction(data);
-		txsNotYetAdded.add(t);
+		txPool.add(t);
 		return t;
 	}
 
 	public void addTransaction(Transaction tx) {
-		txsNotYetAdded.add(tx);
+		txPool.add(tx);
 	}
 
 	private Transaction deleteTransaction(String hash) {
-		if (txsNotYetAdded.size() > 0) {
+		if (txPool.size() > 0) {
 			int i;
-			for (i = 0; i < txsNotYetAdded.size(); i++) {
-				if (txsNotYetAdded.get(i).getHash().equals(hash)) {
-					return txsNotYetAdded.remove(i);
+			for (i = 0; i < txPool.size(); i++) {
+				if (txPool.get(i).getHash().equals(hash)) {
+					return txPool.remove(i);
 				}
 			}
 		}
@@ -57,7 +57,7 @@ public class BlockChain {
 	public Block createBlock() {
 		List<Transaction> t = new ArrayList<Transaction>();
 
-		t.addAll(txsNotYetAdded);
+		t.addAll(txPool);
 
 		return new Block(lastBlock.getNumber() + 1, lastBlock.getHash(), t);
 	}
@@ -84,8 +84,8 @@ public class BlockChain {
 		return chain;
 	}
 
-	public List<Transaction> getTxsNotYetAdded() {
-		return txsNotYetAdded;
+	public List<Transaction> getTxPool() {
+		return txPool;
 	}
 
 	public Block getBlock(int blockNumber) {
@@ -107,9 +107,9 @@ public class BlockChain {
 	}
 
 	public Transaction getTransaction(String txHash) {
-		for (int i = 0; i < txsNotYetAdded.size(); i++) {
-			if (txsNotYetAdded.get(i).getHash().equals(txHash)) {
-				return txsNotYetAdded.get(i);
+		for (int i = 0; i < txPool.size(); i++) {
+			if (txPool.get(i).getHash().equals(txHash)) {
+				return txPool.get(i);
 			}
 		}
 		return null;
@@ -126,7 +126,7 @@ public class BlockChain {
 	}
 
 	public int getTxsNotYetAddedSize() {
-		return txsNotYetAdded.size();
+		return txPool.size();
 	}
 
 }
