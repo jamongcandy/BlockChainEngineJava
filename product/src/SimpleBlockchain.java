@@ -26,10 +26,7 @@ public class SimpleBlockchain extends Blockchain {
 		}
 	}
 
-	@Override
-	public LinkedList<Block> getBlockchain() {
-		return simpleBlockchain;
-	}
+
 
 	@Override
 	public Block getLatestBlock() {

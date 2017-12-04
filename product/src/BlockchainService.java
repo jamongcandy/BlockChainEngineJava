@@ -8,8 +8,8 @@ public class BlockchainService {
 		return new Block();
 	}
 
-	public Blockchain createNewBlockchain(Block genesisBlock) {
-		blockchain = new BigBlockchain(genesisBlock);
+	public Blockchain createNewBlockchain() {
+
 		return blockchain;
 	}
 	public Blockchain createNewBlockchain(Block genesisBlock, int chainSize) {

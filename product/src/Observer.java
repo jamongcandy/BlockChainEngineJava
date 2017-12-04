@@ -1,9 +1,8 @@
 
 public class Observer extends Node {
-	private BlockchainUI bui;
-
 	Observer(BlockchainUI bui){
 		this.bui = bui;
+		this.nodeType = NodeType.Observer;
 	}
 	
 	@Override

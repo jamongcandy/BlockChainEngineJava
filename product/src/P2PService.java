@@ -4,7 +4,7 @@ public class P2PService {
 	private List<Node> nodes;
 	private BlockchainService blockService;
 	
-	public void broadcast() {
+	public void broadcast(Block data) {
 		
 	}
 	public void initP2PServer() {
@@ -19,13 +19,13 @@ public class P2PService {
 	public void write() {
 		
 	}
-	public void queryAllMsg() {
-		
+	public String queryAllMsg() {
+		return new String();
 	}
-	public void responseChainMsg() {
-		
+	public String responseChainMsg() {
+		return new String();
 	}
-	public void getNodes() {
-		
+	public List<Node> getNodes() {
+		return nodes;
 	}
 }

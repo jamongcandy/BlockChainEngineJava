@@ -1,9 +1,9 @@
 
 public class TransactionCreator extends Node {
-	private BlockchainUI bui;
 
 	public TransactionCreator(BlockchainUI bui){
 		this.bui = bui;
+		this.nodeType =  NodeType.TransactionCreator;
 	}
 
 	@Override

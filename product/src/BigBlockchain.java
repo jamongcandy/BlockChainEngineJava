@@ -20,10 +20,6 @@ public class BigBlockchain extends Blockchain {
 		blockchain.add(newBlock);
 	}
 	@Override
-	public LinkedList<Block> getBlockchain() {
-		return blockchain;
-	}
-	@Override
 	public Block getLatestBlock() {
 		return blockchain.peekLast();
 	}

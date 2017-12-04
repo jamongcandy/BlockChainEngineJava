@@ -1,7 +1,8 @@
 
 public abstract class Node {
-	private BlockchainUI bui;
-	private int nodeType;
+	enum NodeType {Miner, TransactionCreator, Observer};
+	protected BlockchainUI bui;
+	public NodeType nodeType;
 	
 	public abstract void work();
 }

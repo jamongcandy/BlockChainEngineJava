@@ -1,9 +1,9 @@
 
 public class Miner extends Node {
-	private BlockchainUI bui;
-	
+
 	Miner(BlockchainUI bui){
 		this.bui = bui;
+		this.nodeType = NodeType.Miner;
 	}
 	
 	@Override
