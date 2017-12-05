@@ -7,16 +7,16 @@ public class P2PService {
 	public void broadcast(Block data) {
 		
 	}
-	public void initP2PServer() {
+	public void initP2PServer(int ) {
 		
 	}
 	public void handleNodes() {
 		
 	}
-	public void connectToPeer() {
+	public void connectToPeer(String) {
 		
 	}
-	public void write() {
+	public void write(Node , String) {
 		
 	}
 	public String queryAllMsg() {

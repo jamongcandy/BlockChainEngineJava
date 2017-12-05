@@ -14,11 +14,11 @@ public class Hash {
 	public Hash(Transaction tx) {
 		hash = SHA256(tx.getData().toString().concat(tx.getData().toString()));
 	}
-	public Hash(Block b) {
-		hash = SHA256(Integer.toString(b.getBlockNumber()).
-				concat(b.getTimestamp().toString()).
-				concat(b.getPrevHash().getHash()).
-				concat(b.getMerkleRoot().getHash())
+	public Hash(Block block) {
+		hash = SHA256(Integer.toString(block.getBlockNumber()).
+				concat(block.getTimestamp().toString()).
+				concat(block.getPrevHash().getHash()).
+				concat(block.getMerkleRootHash().getHash())
 				);
 	}
 	
