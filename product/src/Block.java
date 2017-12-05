@@ -14,7 +14,7 @@ public class Block {
 	//block blockHash
 	private Hash blockHash;
 	//transactions in block
-	private List<Transaction> txs;
+	private List<AbstractTransaction> txs;
 	
 	public Block() {
 		timestamp = null;
@@ -23,7 +23,7 @@ public class Block {
 		merkleRootHash = null;
 		merkleTree = null;
 		blockHash = null;
-		txs = new ArrayList<Transaction>();
+		txs = new ArrayList<AbstractTransaction>();
 	}
 
 	//set of getter and setter
@@ -67,12 +67,9 @@ public class Block {
 		this.blockHash = blockHash;
 	}
 	
-	public List<Transaction> getTxs(){
+	public List<AbstractTransaction> getTxs(){
 		return txs;
 	}
 
-	public void createTransaction(TxFormat data) {
-
-	}
 	
 }

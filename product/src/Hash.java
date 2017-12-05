@@ -11,7 +11,7 @@ public class Hash {
 		hash = SHA256(base);
 	}
 	
-	public Hash(Transaction tx) {
+	public Hash(AbstractTransaction tx) {
 		hash = SHA256(tx.getData().toString().concat(tx.getData().toString()));
 	}
 	public Hash(Block block) {

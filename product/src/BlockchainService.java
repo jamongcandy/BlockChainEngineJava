@@ -3,6 +3,11 @@ import java.util.TreeSet;
 public class BlockchainService {
 
 	private Blockchain blockchain;
+	private TransactionFactory txFactory;
+
+	public BlockchainService(TransactionFactory txFactory) {
+		this.txFactory = txFactory;
+	}
 
 	public Block generateNewBlock() {
 		return new Block();
@@ -31,8 +36,8 @@ public class BlockchainService {
 
 	}
 
-	public Transaction createTransaction(TransactionCreator txcreator, Object data) {
-		return new Transaction(txcreator, data);
+	public AbstractTransaction createTransaction(TransactionCreator from, Object data) {
+		return new
 	}
 
 	public TreeSet<Hash> getMerkleTree() {

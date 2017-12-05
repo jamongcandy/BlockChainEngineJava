@@ -10,7 +10,7 @@ public class BlockchainUI {
 
 	}
 
-	public Transaction makeTransaction(TransactionCreator txCreator, Object data) {
+	public AbstractTransaction makeTransaction(TransactionCreator txCreator, Object data) {
 		return bls.createTransaction(txCreator, data);
 	}
 
