@@ -58,7 +58,7 @@ public class ServerThread extends Thread {
 					else if (received.toString().equals("block")) {
 						System.out.println("receive block");
 						Block block = (Block) in.readObject();
-						node.addBlock(block);
+						node.receiveBlock(block);
 					}
 
 				}

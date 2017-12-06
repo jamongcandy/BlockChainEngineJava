@@ -1,26 +1,26 @@
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Node {
 	private int id;
 	private BlockChain blockChain;
-	private List<Integer> peersID;
+	private Set<Integer> peersID;
 
 	public Node(int id) {
 		this.id = id;
 		blockChain = new BlockChain();
-		peersID = new ArrayList<Integer>();
+		peersID = new HashSet<Integer>();
 	}
 
 	public Node(int id, int srcNodePort) {
 		this.id = id;
-		peersID = new ArrayList<Integer>();
+		peersID = new HashSet<Integer>();
 		downloadBlockchain(srcNodePort);
 	}
-	
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		int nodeID = Integer.parseInt(args[0]);
@@ -40,7 +40,7 @@ public class Node {
 		server.start();
 
 	}
-	
+
 	public void setPort(int id) {
 		this.id = id;
 	}
@@ -53,7 +53,7 @@ public class Node {
 		return blockChain;
 	}
 
-	public List<Integer> getPeersID() {
+	public Set<Integer> getPeersID() {
 		return peersID;
 	}
 
@@ -123,7 +123,9 @@ public class Node {
 			socket.close();
 
 		} catch (Exception e) {
-			blockChain = new BlockChain();
+			System.out.println("can not connect to " + receiverID);
+			System.out.println("delete " + receiverID + " in peer list");
+			peersID.remove(receiverID);
 			e.printStackTrace();
 		}
 	}
@@ -146,8 +148,23 @@ public class Node {
 		if (blockChain.getTxsNotYetAddedSize() > 0) {
 			Block newBlock = createBlock();
 			addBlock(newBlock);
-			sendBlock(peersID.get(0), newBlock);
-			// broadcast!!!!!! not included
+
+			// broadcast Block
+			for (Integer peer : peersID) {
+				sendBlock(peer, newBlock);
+			}
+
+		}
+	}
+
+	public void receiveBlock(Block b) {
+		if (blockChain.getBlock(b.getHash()) == null) {
+			blockChain.addBlock(b);
+
+			// broadcast block
+			for (Integer peer : peersID) {
+				sendBlock(peer, b);
+			}
 		}
 	}
 
@@ -168,7 +185,9 @@ public class Node {
 			socket.close();
 
 		} catch (Exception e) {
-			blockChain = new BlockChain();
+			System.out.println("can not connect to " + receiverID);
+			System.out.println("delete " + receiverID + " in peer list");
+			peersID.remove(receiverID);
 			e.printStackTrace();
 		}
 	}
@@ -190,7 +209,9 @@ public class Node {
 			socket.close();
 
 		} catch (Exception e) {
-			blockChain = new BlockChain();
+			System.out.println("can not connect to " + connectTo);
+			System.out.println("delete " + connectTo + " in peer list");
+			peersID.remove(connectTo);
 			e.printStackTrace();
 		}
 	}

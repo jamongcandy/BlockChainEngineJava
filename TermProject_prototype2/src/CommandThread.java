@@ -12,6 +12,7 @@ public class CommandThread extends Thread {
 		System.out.println(" \"tx\"     : create tx");
 		System.out.println(" \"update\" : update blockchain");
 		System.out.println(" \"show\"   : print blockchain");
+		System.out.println(" \"addPeer\": add peer");
 		System.out.println(" \"exit\"   : exit program");
 	}
 
@@ -36,6 +37,11 @@ public class CommandThread extends Thread {
 				node.showBlockChain();
 			} else if (str.equals("help")) {
 				printCommandList();
+			} else if (str.equals("addPeer")) {
+				System.out.print("Enter peer id : ");
+				int peerID = Integer.parseInt(scanner.nextLine());
+				node.addPeer(peerID);
+				node.connectPeer(peerID);
 			}
 
 		}
