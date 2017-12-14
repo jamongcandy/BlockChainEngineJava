@@ -22,7 +22,7 @@ Also give following options
 
   ex) start node 2 with blockchain size 50, with miner option.
 
-  <code>>2 0 -m</code>
+  <code>>2 50 -m</code>
 
 ### Command List
 "download" : download block chain data
